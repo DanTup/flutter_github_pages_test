@@ -1,0 +1,11 @@
+.dart_tool/
+.DS_Store
+.idea/
+.packages
+*.iml
+android/
+build/
+ios/
+macos/
+web/
+windows/
