@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: pages
-          path: desctination
+          path: destination
 
       - uses: DanTup/gh-actions/setup-flutter@v1.1.0
         with:
@@ -29,4 +29,15 @@ jobs:
         run: flutter create . --platforms web --org com.dantup --project-name flutter_app_test
 
       - working-directory: source
-        run: flutter build web
+        run: flutter build web --web-renderer canvaskit --pwa-strategy none
+
+      - working-directory: source
+        run: cp -r build/web/** ../destination/
+
+      - working-directory: destination
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add .
+          git commit -m "Update site with latest" || true
+          git push origin
