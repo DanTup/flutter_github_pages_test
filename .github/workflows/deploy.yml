@@ -26,4 +26,7 @@ jobs:
           channel: master
 
       - working-directory: source
+        run: flutter create . --platforms web --org com.dantup
+
+      - working-directory: source
         run: flutter build web
