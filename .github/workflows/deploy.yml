@@ -1,0 +1,29 @@
+name: Deploy Latest
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  sync:
+    name: Rebuild Site
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          path: source
+      - uses: actions/checkout@v2
+        with:
+          ref: pages
+          path: desctination
+
+      - uses: DanTup/gh-actions/setup-flutter@v1.1.0
+        with:
+          channel: master
+
+      - working-directory: source
+        run: flutter build web
