@@ -26,7 +26,7 @@ jobs:
           channel: master
 
       - working-directory: source
-        run: flutter create . --platforms web --org com.dantup
+        run: flutter create . --platforms web --org com.dantup --project-name flutter-app-test
 
       - working-directory: source
         run: flutter build web
